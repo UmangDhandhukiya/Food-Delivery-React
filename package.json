@@ -1,0 +1,21 @@
+{
+  "name": "fooddeliveryjs",
+  "version": "1.0.0",
+  "description": "This is my food delivery web",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/UmangDhandhukiya/Food-Delivery-React.git"
+  },
+  "author": "Umang Dhandhukiya",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.15.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
