@@ -41,10 +41,10 @@ const Main = () => {
           onChange={(e) => {
             setSearch(e.target.value);
 
-            const filterData = res.filter((res) =>
-              res.info.name.toLowerCase().includes(serach.toLocaleLowerCase())
-            );
-            setFilterRes(filterData);
+            // const filterData = res.filter((res) =>
+            //   res.info.name.toLowerCase().includes(serach.toLocaleLowerCase())
+            // );
+            // setFilterRes(filterData);
           }}
           placeholder="Search For Restaurant"
         />
