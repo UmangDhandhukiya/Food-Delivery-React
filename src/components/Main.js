@@ -6,6 +6,10 @@ import Shimmer from "./Shimmer";
 const Main = () => {
   const [res, setres] = useState([]);
 
+  const [filterRes, setFilterRes] = useState([]);
+
+  const [serach, setSearch] = useState("");
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,6 +22,10 @@ const Main = () => {
     setres(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    setFilterRes(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   if (res.length === 0) {
@@ -27,7 +35,32 @@ const Main = () => {
   return (
     <div className="Main">
       <div className="Search">
-        {/* <input type="text" placeholder="Search For Restaurant" /> */}
+        <input
+          type="text"
+          value={serach}
+          onChange={(e) => {
+            setSearch(e.target.value);
+
+            const filterData = res.filter((res) =>
+              res.info.name.toLowerCase().includes(serach.toLocaleLowerCase())
+            );
+            setFilterRes(filterData);
+          }}
+          placeholder="Search For Restaurant"
+        />
+
+        <button
+          className="btn"
+          onClick={() => {
+            const filterData = res.filter((res) =>
+              res.info.name.toLowerCase().includes(serach.toLocaleLowerCase())
+            );
+            setFilterRes(filterData);
+          }}
+        >
+          Search
+        </button>
+
         <button
           className="btn"
           onClick={() => {
@@ -39,7 +72,7 @@ const Main = () => {
         </button>
       </div>
       <div className="res-cards">
-        {res.map((restaurants) => (
+        {filterRes.map((restaurants) => (
           <Card key={restaurants.info.id} resData={restaurants} />
         ))}
       </div>
