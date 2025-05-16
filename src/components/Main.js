@@ -2,6 +2,8 @@ import Card from "./Card";
 import { restaurants, API_KEY } from "../utills/constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
+
 
 const Main = () => {
   const [res, setres] = useState([]);
@@ -64,8 +66,8 @@ const Main = () => {
         <button
           className="btn"
           onClick={() => {
-            const filterRes = res.filter((res) => res.info.avgRating > 4);
-            setres(filterRes);
+            const filterRes = res.filter((res) => res.info.avgRating > 4.5);
+            setFilterRes(filterRes);
           }}
         >
           Top Rated Restaurant
@@ -73,7 +75,8 @@ const Main = () => {
       </div>
       <div className="res-cards">
         {filterRes.map((restaurants) => (
-          <Card key={restaurants.info.id} resData={restaurants} />
+          <Link key={restaurants?.info?.id} to={"/restaurant/" + restaurants?.info?.id} ><Card resData={restaurants} /></Link>
+          // <Card key={restaurants?.info?.id} resData={restaurants} />
         ))}
       </div>
     </div>

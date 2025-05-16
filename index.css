@@ -30,7 +30,13 @@
   list-style-type: none;
 }
 
-.Nav-items > ul > li:hover {
+.i{
+  text-decoration: none;
+  color: black;
+}
+
+.i:focus{
+  text-decoration:underline rgb(239, 92, 38);
   color: orangered;
   cursor: pointer;
 }
@@ -150,4 +156,16 @@ h5 {
   background-color: rgba(239, 92, 38, 0.652);
   color: black;
   cursor: pointer;
+}
+
+.center{
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-items{
+  display: flex;
+  gap: 10px;
 }
