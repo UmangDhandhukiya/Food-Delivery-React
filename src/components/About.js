@@ -1,8 +1,11 @@
+import AboutCardClass from "./AboutCardClass";
+import AboutCard from "./AboutCard";
+
 const About = () => {
     return(
         <div className="center">
             <h1>About Us</h1>
-            <h2>This is about us page</h2>
+            <AboutCardClass name={"umangclass"} location={"Mumabai"}/>
         </div>
     )
 }
