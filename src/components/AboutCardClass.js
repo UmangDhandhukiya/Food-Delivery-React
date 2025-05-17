@@ -4,32 +4,34 @@ class AboutCardClass extends React.Component {
   constructor(props) {
     super(props);
 
-    //in class component state has largeobject we can add state variable in object
+    //in class component state has large object we can add state variable in object
 
     this.state = {
-      count: 0,
-      count2: 1,
+      userInfo : {
+        name : "dummy",
+        location: "dummy"
+      }
     };
   }
 
+async componentDidMount(){ 
+  const data = await fetch("https://api.github.com/users/UmangDhandhukiya");
+
+  const json = await data.json()
+
+  this.setState({
+    userInfo:json,
+  })
+}
+
   render() {
-    const { name, location } = this.props;
-    const { count } = this.state;
+    const { name, bio, avatar_url} = this.state.userInfo;
 
     return (
       <div className="Card">
-        <h1>Count:{count}</h1>
-
-        {/* we never change state variable directly in class component */}
-
-        <button
-          onClick={() => {
-            this.setState({ count: this.state.count + 1 });
-          }}
-        >+</button>
-        <h1>{name}</h1>
-        <h2>{location}</h2>
-        <h2>Umang97</h2>
+        <img src={avatar_url}/>
+        <h4>{name}</h4>
+        <h6>{bio}</h6>
       </div>
     );
   }
