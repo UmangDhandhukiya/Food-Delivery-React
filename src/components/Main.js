@@ -3,7 +3,7 @@ import { restaurants, API_KEY } from "../utills/constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
-
+import useStatus from "../utills/useStatus";
 
 const Main = () => {
   const [res, setres] = useState([]);
@@ -29,6 +29,12 @@ const Main = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useStatus();
+
+  if (onlineStatus === false) {
+    return <h1 className="center page">Your Internet connection lost please check your connection</h1>;
+  }
 
   if (res.length === 0) {
     return <Shimmer />;
@@ -75,7 +81,13 @@ const Main = () => {
       </div>
       <div className="res-cards">
         {filterRes.map((restaurants) => (
-          <Link key={restaurants?.info?.id} to={"/restaurant/" + restaurants?.info?.id} className="i"><Card resData={restaurants} /></Link>
+          <Link
+            key={restaurants?.info?.id}
+            to={"/restaurant/" + restaurants?.info?.id}
+            className="i"
+          >
+            <Card resData={restaurants} />
+          </Link>
           // <Card key={restaurants?.info?.id} resData={restaurants} />
         ))}
       </div>
