@@ -41,8 +41,9 @@ This is a simple **React-based food delivery app** built as part of my learning 
 
 ## 📸 Screenshots
 
-> ![localhost_1234_ (1)](https://github.com/user-attachments/assets/f111ad35-30ee-4ae1-a892-30a689deeff7)
-> ![localhost_1234_restaurant_641192](https://github.com/user-attachments/assets/8c1a4004-94d0-4547-ba32-51b30e62a103)
+> ![localhost_1234_ (3)](https://github.com/user-attachments/assets/be5706d6-2101-49f6-b6b7-f8b3c3139b2d)
+> ![localhost_1234_restaurant_300374](https://github.com/user-attachments/assets/407b6c3a-ec3f-4594-9966-feb25f15f626)
+
 
 
 
