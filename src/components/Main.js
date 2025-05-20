@@ -30,6 +30,9 @@ const Main = () => {
     );
   };
 
+console.log(res);
+
+
   const onlineStatus = useStatus();
 
   if (onlineStatus === false) {
