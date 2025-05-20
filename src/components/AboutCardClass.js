@@ -28,7 +28,7 @@ async componentDidMount(){
     const { name, bio, avatar_url} = this.state.userInfo;
 
     return (
-      <div className="Card">
+      <div className="flex flex-col justify-between items-center">
         <img src={avatar_url}/>
         <h4>{name}</h4>
         <h6>{bio}</h6>

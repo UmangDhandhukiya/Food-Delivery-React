@@ -7,8 +7,8 @@ const Card = (props) => {
     resData?.info;
 
   return (
-    <div className="Card">
-      <img className="card-image" src={CDN_URL + cloudinaryImageId} />
+    <div className="flex flex-col justify-between rounded-3xl w-[320px] p-2 mb-2 hover:scale-95">
+      <img className="w-full h-[180px] rounded-xl" src={CDN_URL + cloudinaryImageId} />
       <h3>{name}</h3>
       <h5>{cuisines.join(", ")}</h5>
       <h5>{costForTwo}</h5>

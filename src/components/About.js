@@ -3,7 +3,7 @@ import AboutCard from "./AboutCard";
 
 const About = () => {
     return(
-        <div className="page center">
+        <div className="h-full flex flex-col justify-center items-center">
             <h1>Our Team</h1>
             <AboutCardClass name={"umangclass"} location={"Mumabai"}/>
         </div>

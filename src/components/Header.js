@@ -7,33 +7,40 @@ const Header = () => {
   const [Login, setLogin] = useState("Login");
   console.log("component Render");
 
-  const onlineStatus = useStatus()
+  const onlineStatus = useStatus();
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="Logo" alt="Logo" src={LOGO_URL} />
+    <div className="flex justify-between items-center border border-black h-full px-6">
+      <div>
+        <img className="size-24" alt="Logo" src={LOGO_URL} />
       </div>
-      <div className="Nav-items">
-        <ul>
-          <li>
-            Online Status: {onlineStatus ? "🟢" : "🔴"}
-          </li>
-          <li>
-            <Link className="i" to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link className="i" to={"/about"}>About Us</Link>
-          </li>
-          <li>
-            <Link className="i" to={"/Contact"}>Contact Us</Link>
-          </li>
-          <li>Cart</li>
+      <div className="w-1/2 text-xl font-medium">
+        <ul className="flex justify-between">
+          <li className="py-2">Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
+
+          <Link
+            className="py-2 active:text-orange-600 active:underline cursor-pointer"
+            to={"/"}
+          >
+            Home
+          </Link>
+          <Link
+            className="py-2 active:text-orange-600 active:underline cursor-pointer"
+            to={"/about"}
+          >
+            About Us
+          </Link>
+          <Link
+            className="py-2 active:text-orange-600 active:underline cursor-pointer"
+            to={"/Contact"}
+          >
+            Contact Us
+          </Link>
           <button
+            className="px-5 py-2 text-white bg-orange-600 rounded-3xl"
             onClick={() => {
               Login === "Login" ? setLogin("Logout") : setLogin("Login");
             }}
-            className="Login"
           >
             {Login}
           </button>

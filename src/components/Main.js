@@ -30,13 +30,16 @@ const Main = () => {
     );
   };
 
-console.log(res);
-
+  console.log(res);
 
   const onlineStatus = useStatus();
 
   if (onlineStatus === false) {
-    return <h1 className="center page">Your Internet connection lost please check your connection</h1>;
+    return (
+      <h1 className="center page">
+        Your Internet connection lost please check your connection
+      </h1>
+    );
   }
 
   if (res.length === 0) {
@@ -44,10 +47,11 @@ console.log(res);
   }
 
   return (
-    <div className="Main">
-      <div className="Search">
+    <div className="px-16 py-6">
+      <div className="flex justify-center items-center gap-3">
         <input
           type="text"
+          className="w-1/3 px-8 py-2 text-lg bg-gray-200 rounded-3xl"
           value={serach}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -61,7 +65,7 @@ console.log(res);
         />
 
         <button
-          className="btn"
+          className="text-white text-lg px-4 py-2 bg-orange-600 rounded-3xl hover:bg-orange-400 hover:text-black hover:cursor-pointer"
           onClick={() => {
             const filterData = res.filter((res) =>
               res.info.name.toLowerCase().includes(serach.toLocaleLowerCase())
@@ -73,7 +77,7 @@ console.log(res);
         </button>
 
         <button
-          className="btn"
+          className="text-white text-lg px-4 py-2 bg-orange-600 rounded-3xl hover:bg-orange-400 hover:text-black hover:cursor-pointer"
           onClick={() => {
             const filterRes = res.filter((res) => res.info.avgRating > 4.5);
             setFilterRes(filterRes);
@@ -82,12 +86,11 @@ console.log(res);
           Top Rated Restaurant
         </button>
       </div>
-      <div className="res-cards">
+      <div className="flex flex-wrap gap-3 mt-5 items-start">
         {filterRes.map((restaurants) => (
           <Link
             key={restaurants?.info?.id}
             to={"/restaurant/" + restaurants?.info?.id}
-            className="i"
           >
             <Card resData={restaurants} />
           </Link>
