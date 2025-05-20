@@ -23,17 +23,44 @@ const RestaurantMenu = () => {
 
   const itemCards = menuItemsCard?.card?.card?.itemCards || [];
 
+  console.log(itemCards);
+
   return (
-    <div className="Menu center">
+    <div className="Menu">
       <div className="Details">
-        <h1>{name}</h1>
-        <h2>{avgRating}</h2>
-        <h2>{costForTwoMessage}</h2>
-        <h2>{cuisines.join(", ")}</h2>
+        <div>
+          <h1>{name}</h1>
+          <h3>{avgRating}⭐</h3>
+        </div>
+        <div>
+          <h1>{cuisines.join(", ")}</h1>
+          <h3>{costForTwoMessage}</h3>
+        </div>
       </div>
+
+      <h2>Dishes</h2>
+
       <div className="Menu-items">
         {itemCards.map((item) => (
-          <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
+          <div key={item?.card?.info?.id}>
+            <div className="item-box">
+              <div>
+                <h2>{item?.card?.info?.name}</h2>
+                <h3>
+                  ₹
+                  {item?.card?.info?.price / 100 ||
+                    item?.card?.info?.defaultPrice / 100}{" "}
+                </h3>
+                <h5>{item?.card?.info?.category}</h5>
+                <h5>⭐{item?.card?.info?.ratings?.aggregatedRating?.rating}</h5>
+
+              </div>
+              <img
+                src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/${item?.card?.info?.imageId}`}
+              />
+            </div>
+            <hr />
+          </div>
         ))}
       </div>
     </div>
