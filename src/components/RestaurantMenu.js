@@ -7,6 +7,9 @@ const RestaurantMenu = () => {
 
   const resDetail = useRestaurantMenu(resId);
 
+  console.log(resDetail);
+  
+
   if (resDetail === null) return <Shimmer />;
 
   const { name, avgRating, costForTwoMessage, cuisines } =
@@ -22,8 +25,6 @@ const RestaurantMenu = () => {
   const menuItemsCard = regularCards?.find((c) => c?.card?.card?.itemCards);
 
   const itemCards = menuItemsCard?.card?.card?.itemCards || [];
-
-  console.log(itemCards);
 
   return (
     <div className="flex flex-col justify-center items-center w-full gap-4 font-medium">
@@ -46,7 +47,11 @@ const RestaurantMenu = () => {
             <div className="flex justify-between items-center gap-5 p-3">
               <div>
                 <h2 className="text-2xl">{item?.card?.info?.name}</h2>
-                <h3>₹{item?.card?.info?.price / 100 ||item?.card?.info?.defaultPrice / 100}</h3>
+                <h3>
+                  ₹
+                  {item?.card?.info?.price / 100 ||
+                    item?.card?.info?.defaultPrice / 100}
+                </h3>
                 <h5>{item?.card?.info?.category}</h5>
                 <h5>⭐{item?.card?.info?.ratings?.aggregatedRating?.rating}</h5>
               </div>

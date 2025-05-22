@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card, { withLable } from "./Card";
 import { restaurants, API_KEY } from "../utills/constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -11,6 +11,8 @@ const Main = () => {
   const [filterRes, setFilterRes] = useState([]);
 
   const [serach, setSearch] = useState("");
+
+  const LabelCard = withLable(Card);
 
   useEffect(() => {
     fetchData();
@@ -30,8 +32,6 @@ const Main = () => {
     );
   };
 
-  console.log(res);
-
   const onlineStatus = useStatus();
 
   if (onlineStatus === false) {
@@ -47,7 +47,7 @@ const Main = () => {
   }
 
   return (
-    <div className="px-16 py-6">
+    <div className="w-full py-6">
       <div className="flex justify-center items-center gap-3">
         <input
           type="text"
@@ -86,13 +86,17 @@ const Main = () => {
           Top Rated Restaurant
         </button>
       </div>
-      <div className="flex flex-wrap gap-3 mt-5 items-start">
+      <div className="w-11/12 flex flex-wrap mt-5 mx-auto gap-8">
         {filterRes.map((restaurants) => (
           <Link
             key={restaurants?.info?.id}
             to={"/restaurant/" + restaurants?.info?.id}
           >
-            <Card resData={restaurants} />
+            {restaurants?.info?.veg ? (
+              <LabelCard resData={restaurants} />
+            ) : (
+              <Card resData={restaurants} />
+            )}
           </Link>
           // <Card key={restaurants?.info?.id} resData={restaurants} />
         ))}
