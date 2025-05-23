@@ -1,4 +1,5 @@
 import useRestaurantMenu from "../utills/useRestaurantMenu";
+import MenuItems from "./MenuItems";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 
@@ -6,9 +7,6 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resDetail = useRestaurantMenu(resId);
-
-  console.log(resDetail);
-  
 
   if (resDetail === null) return <Shimmer />;
 
@@ -22,45 +20,43 @@ const RestaurantMenu = () => {
   const regularCards = resDetail?.cards?.find((card) => card?.groupedCard)
     ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-  const menuItemsCard = regularCards?.find((c) => c?.card?.card?.itemCards);
-
-  const itemCards = menuItemsCard?.card?.card?.itemCards || [];
+  const categoryType = regularCards.filter(
+    (category) =>
+      category?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   return (
     <div className="flex flex-col justify-center items-center w-full gap-4 font-medium">
-      <div className="flex justify-between items-center w-[60%]">
+      <div className="flex justify-between items-center w-[60%] mt-2">
         <div>
-          <h1 className="text-3xl">{name}</h1>
+          <h1 className="text-xl">{name}</h1>
           <h3>{avgRating}⭐</h3>
         </div>
         <div>
-          <h1 className="text-3xl">{cuisines.join(", ")}</h1>
+          <h1 className="text-xl">{cuisines.join(", ")}</h1>
           <h3>{costForTwoMessage}</h3>
         </div>
       </div>
 
-      <h1 className="text-4xl">--Menu--</h1>
+      <h1 className="text-2xl">--Menu--</h1>
 
-      <div className="flex flex-col gap-3 w-[60%]">
-        {itemCards.map((item) => (
-          <div key={item?.card?.info?.id}>
-            <div className="flex justify-between items-center gap-5 p-3">
-              <div>
-                <h2 className="text-2xl">{item?.card?.info?.name}</h2>
-                <h3>
-                  ₹
-                  {item?.card?.info?.price / 100 ||
-                    item?.card?.info?.defaultPrice / 100}
-                </h3>
-                <h5>{item?.card?.info?.category}</h5>
-                <h5>⭐{item?.card?.info?.ratings?.aggregatedRating?.rating}</h5>
-              </div>
-              <img
-                className="size-36 rounded-3xl"
-                src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/${item?.card?.info?.imageId}`}
-              />
+      <div className="w-[60%] flex flex-col gap-1">
+        {categoryType.map((category) => (
+          <div
+            key={category?.card?.card?.categoryId}
+            className="flex flex-col justify-between px-6 py-4 bg-gray-100"
+          >
+            <div className="flex justify-between">
+              <h1 className="font-bold text-lg">
+                {category?.card?.card?.title}(
+                {category?.card?.card?.itemCards.length})
+              </h1>
+              <h1 className="rotate-180 font-bold text-lg">˄</h1>
             </div>
-            <hr />
+
+            <MenuItems menu={category?.card?.card?.itemCards}/>
+            
           </div>
         ))}
       </div>

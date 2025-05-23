@@ -14,7 +14,7 @@ const Header = () => {
       <div>
         <img className="size-24" alt="Logo" src={LOGO_URL} />
       </div>
-      <div className="w-1/2 text-xl font-medium">
+      <div className="w-1/2 text-lg font-medium">
         <ul className="flex justify-between">
           <li className="py-2">Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
 
