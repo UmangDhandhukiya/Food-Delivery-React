@@ -1,9 +1,15 @@
+import { useState } from "react";
 import useRestaurantMenu from "../utills/useRestaurantMenu";
 import MenuItems from "./MenuItems";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 
 const RestaurantMenu = () => {
+
+  const [show,setShow] = useState(false)
+
+  const[current,setCurrent] = useState(null)
+
   const { resId } = useParams();
 
   const resDetail = useRestaurantMenu(resId);
@@ -26,6 +32,11 @@ const RestaurantMenu = () => {
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
 
+  const handleClick = (index) => {
+    setShow(!show)
+    setCurrent(index)
+  }
+
   return (
     <div className="flex flex-col justify-center items-center w-full gap-4 font-medium">
       <div className="flex justify-between items-center w-[60%] mt-2">
@@ -41,21 +52,22 @@ const RestaurantMenu = () => {
 
       <h1 className="text-2xl">--Menu--</h1>
 
-      <div className="w-[60%] flex flex-col gap-1">
-        {categoryType.map((category) => (
+      <div className="w-[60%] flex flex-col gap-1" >
+        {categoryType?.map((category,index) => (
           <div
             key={category?.card?.card?.categoryId}
             className="flex flex-col justify-between px-6 py-4 bg-gray-100"
+             onClick={() => {handleClick(index)}}
           >
             <div className="flex justify-between">
               <h1 className="font-bold text-lg">
                 {category?.card?.card?.title}(
                 {category?.card?.card?.itemCards.length})
               </h1>
-              <h1 className="rotate-180 font-bold text-lg">˄</h1>
+              <h1 style={{rotate:index === current ? "" : "180deg  "}} className="font-bold text-lg">{index === current ? "˄" : "˄"}</h1>
             </div>
 
-            <MenuItems menu={category?.card?.card?.itemCards}/>
+            { index === current && <MenuItems menu={category?.card?.card?.itemCards}/>}
             
           </div>
         ))}
