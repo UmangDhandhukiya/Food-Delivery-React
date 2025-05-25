@@ -52,11 +52,11 @@ const RestaurantMenu = () => {
 
       <h1 className="text-2xl">--Menu--</h1>
 
-      <div className="w-[60%] flex flex-col gap-1" >
+      <div className="w-[60%] flex flex-col gap-4 bg-gray-100" >
         {categoryType?.map((category,index) => (
           <div
             key={category?.card?.card?.categoryId}
-            className="flex flex-col justify-between px-6 py-4 bg-gray-100"
+            className="flex flex-col justify-between px-6 py-4 bg-white"
              onClick={() => {handleClick(index)}}
           >
             <div className="flex justify-between">
@@ -64,10 +64,10 @@ const RestaurantMenu = () => {
                 {category?.card?.card?.title}(
                 {category?.card?.card?.itemCards.length})
               </h1>
-              <h1 style={{rotate:index === current ? "" : "180deg  "}} className="font-bold text-lg">{index === current ? "˄" : "˄"}</h1>
+              <h1 style={{rotate:show ? "" : "180deg"}} className="font-bold text-lg">{index === current ? "˄" : "˄"}</h1>
             </div>
 
-            { index === current && <MenuItems menu={category?.card?.card?.itemCards}/>}
+            { show && index === current && <MenuItems menu={category?.card?.card?.itemCards}/>}
             
           </div>
         ))}
