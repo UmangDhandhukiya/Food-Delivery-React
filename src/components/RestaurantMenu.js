@@ -6,9 +6,7 @@ import { useParams } from "react-router";
 
 const RestaurantMenu = () => {
 
-  const [show,setShow] = useState(false)
-
-  const[current,setCurrent] = useState(null)
+  const[current,setCurrent] = useState(0)
 
   const { resId } = useParams();
 
@@ -33,7 +31,6 @@ const RestaurantMenu = () => {
   );
 
   const handleClick = (index) => {
-    setShow(!show)
     setCurrent(index)
   }
 
@@ -64,10 +61,10 @@ const RestaurantMenu = () => {
                 {category?.card?.card?.title}(
                 {category?.card?.card?.itemCards.length})
               </h1>
-              <h1 style={{rotate:show ? "" : "180deg"}} className="font-bold text-lg">{index === current ? "˄" : "˄"}</h1>
+              <h1 style={{rotate:index === current ? "" : "180deg"}} className="font-bold text-lg">{index === current ? "˄" : "˄"}</h1>
             </div>
 
-            { show && index === current && <MenuItems menu={category?.card?.card?.itemCards}/>}
+            {index === current && <MenuItems menu={category?.card?.card?.itemCards}/>}
             
           </div>
         ))}
