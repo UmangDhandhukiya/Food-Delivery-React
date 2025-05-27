@@ -49,7 +49,7 @@ const RestaurantMenu = () => {
 
       <h1 className="text-2xl">--Menu--</h1>
 
-      <div className="w-[60%] flex flex-col gap-4 bg-gray-100" >
+      <div className="w-[60%] flex flex-col gap-4 bg-gray-100 cursor-pointer" >
         {categoryType?.map((category,index) => (
           <div
             key={category?.card?.card?.categoryId}

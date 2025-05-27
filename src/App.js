@@ -8,14 +8,20 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utills/UserContext";
+
+// if we need to pass some value in our context then used provider which is used for passed value in our context if we need use in whole app then need to wrap whole app
 
 const AppLayout = () => {
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
+    // now name is used in whole app
+    <UserContext.Provider value={{ name: "Umang" }}>
+      <>
+        <Header />
+        <Outlet />
+        <Footer />
+      </>
+    </UserContext.Provider>
   );
 };
 
@@ -32,7 +38,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <Suspense fallback={<h1>Loding......</h1>}><About /></Suspense>,
+        element: (
+          <Suspense fallback={<h1>Loding......</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -42,7 +52,6 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:resId", //this is dyanmic route after : dynamic value allow
         element: <RestaurantMenu />,
       },
-      
     ],
     errorElement: <Error />,
   },

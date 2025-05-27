@@ -10,7 +10,7 @@ const MenuItems = ({ menu }) => {
           <div className="w-[70%]">
               <h1 className="text-md font-bold py-1">{item?.card?.info?.name}</h1>
               <h1 className="text-md py-1">₹{item?.card?.info?.price/100 || item?.card?.info?.defaultPrice/100}</h1>
-              <h1 className="text-sm py-1">{item?.card?.info?.description.split(".")[0]}</h1>
+              <h1 className="text-sm py-1">{item?.card?.info?.description}</h1>
           </div>
           <div>
               <img className="size-40" src={CDN_URL + item?.card?.info?.imageId}/>
