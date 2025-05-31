@@ -9,19 +9,23 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utills/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utills/appStore";
+import Card from "./components/Card";
 
 // if we need to pass some value in our context then used provider which is used for passed value in our context if we need use in whole app then need to wrap whole app
 
 const AppLayout = () => {
   return (
-    // now name is used in whole app
-    <UserContext.Provider value={{ name: "Umang" }}>
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ name: "Umang" }}>
+        <>
+          <Header />
+          <Outlet />
+          <Footer />
+        </>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -47,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/card",
+        element: <Card />,
       },
       {
         path: "/restaurant/:resId", //this is dyanmic route after : dynamic value allow

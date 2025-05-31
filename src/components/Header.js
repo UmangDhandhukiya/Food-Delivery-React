@@ -3,12 +3,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router";
 import useStatus from "../utills/useStatus";
 import UserContext from "../utills/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [Login, setLogin] = useState("Login");
   console.log("component Render");
 
   const { loggedInuser, name } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items)
 
   const onlineStatus = useStatus();
 
@@ -38,6 +41,12 @@ const Header = () => {
             to={"/Contact"}
           >
             Contact Us
+          </Link>
+           <Link
+            className="py-2 active:text-orange-600 active:underline cursor-pointer"
+            to={"/Contact"}
+          >
+            Cart-({cartItems.length})
           </Link>
           <button
             className="px-5 py-2 text-white bg-orange-600 rounded-3xl"
