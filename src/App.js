@@ -11,7 +11,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utills/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./utills/appStore";
-import Card from "./components/Card";
+import AddToCart from "./components/AddToCart";
+
 
 // if we need to pass some value in our context then used provider which is used for passed value in our context if we need use in whole app then need to wrap whole app
 
@@ -53,8 +54,8 @@ const appRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/card",
-        element: <Card />,
+        path: "/cart",
+        element: <AddToCart/>
       },
       {
         path: "/restaurant/:resId", //this is dyanmic route after : dynamic value allow

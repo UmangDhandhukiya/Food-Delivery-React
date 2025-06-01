@@ -12,7 +12,8 @@ const Header = () => {
   const { loggedInuser, name } = useContext(UserContext);
 
   const cartItems = useSelector((store) => store.cart.items)
-
+  console.log(cartItems);
+  
   const onlineStatus = useStatus();
 
   return (
@@ -44,7 +45,7 @@ const Header = () => {
           </Link>
            <Link
             className="py-2 active:text-orange-600 active:underline cursor-pointer"
-            to={"/Contact"}
+            to={"/cart"}
           >
             Cart-({cartItems.length})
           </Link>
